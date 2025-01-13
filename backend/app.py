@@ -4,17 +4,15 @@ import requests
 
 app = FastAPI()
 
-# URL for the income statement data
+
 API_URL = "https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey=aV5bGA6mpU270lg6UvuX8FLDak4BhElS"
 
-# Fetch data from the API
 def fetch_data():
     response = requests.get(API_URL)
     if response.status_code == 200:
         return response.json()
     return []
 
-# Filter function
 def filter_data(data, start_year: Optional[int] = None, end_year: Optional[int] = None, 
                 min_revenue: Optional[int] = None, max_revenue: Optional[int] = None, 
                 min_net_income: Optional[int] = None, max_net_income: Optional[int] = None):
@@ -31,7 +29,7 @@ def filter_data(data, start_year: Optional[int] = None, end_year: Optional[int] 
 
     return filtered_data
 
-# Sort function
+
 def sort_data(data, sort_by: Optional[str] = None, order: Optional[str] = "asc"):
     if sort_by:
         reverse_order = (order == "desc")
@@ -50,16 +48,13 @@ def get_income_statements(
     sort_by: Optional[str] = Query(None, description="Sort by 'date', 'revenue', or 'netIncome'"),
     order: Optional[str] = Query("asc", description="Order of sorting: 'asc' or 'desc'")
 ):
-    # Fetch data from the API
+    
     data = fetch_data()
 
-    # Filter data based on the query parameters
     filtered_data = filter_data(
         data, start_year, end_year, min_revenue, max_revenue, min_net_income, max_net_income
     )
 
-    # Sort data based on the query parameters
     sorted_data = sort_data(filtered_data, sort_by, order)
 
-    # Return the filtered and sorted data
     return sorted_data

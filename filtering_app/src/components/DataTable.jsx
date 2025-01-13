@@ -1,4 +1,3 @@
-// src/components/DataTable.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -20,7 +19,6 @@ const DataTable = () => {
     fetchData();
   }, [filters, sortBy, sortOrder]);
 
-  // Function to fetch data from the backend FastAPI endpoint
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -43,7 +41,7 @@ const DataTable = () => {
     setLoading(false);
   };
 
-  // Handle filter changes
+  // handle filter changes
   const handleFilterChange = (e) => {
     setFilters({
       ...filters,
@@ -51,7 +49,7 @@ const DataTable = () => {
     });
   };
 
-  // Handle sort changes
+  // handle sort changes
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
   };
@@ -64,7 +62,7 @@ const DataTable = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Income Statement Data</h1>
 
-      {/* Filter inputs */}
+      {/* filter inputs */}
       <div className="grid grid-cols-2 gap-4 mb-4">
         <input
           type="number"
@@ -116,7 +114,7 @@ const DataTable = () => {
         />
       </div>
 
-      {/* Sort options */}
+      {/* sort options */}
       <div className="mb-4">
         <label className="mr-4">Sort by:</label>
         <select onChange={handleSortChange} className="border p-2">
@@ -129,7 +127,7 @@ const DataTable = () => {
         </button>
       </div>
 
-      {/* Data table */}
+      {/* data table */}
       {loading ? (
         <p>Loading...</p>
       ) : (
