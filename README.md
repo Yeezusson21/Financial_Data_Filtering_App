@@ -41,10 +41,6 @@ Check out the deployed version here: [Deployed App Link](https://financial-data-
    \`\`\`
 
 3. Add your **Financial Modeling Prep API Key**:
-   - Create a `.env` file in the root directory and add:
-     \`\`\`bash
-     REACT_APP_API_KEY=your_api_key
-     \`\`\`
 
 4. Run the app locally:
    \`\`\`bash
